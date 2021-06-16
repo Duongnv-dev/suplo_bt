@@ -1,0 +1,8 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_course_course,course.course,model_course_course,,1,1,1,1
+access_course_room,course.room,model_course_room,,1,1,1,1
+access_course_attendee,course.attendee,model_course_attendee,,1,1,1,1
+access_course_lesson,course.lesson,model_course_lesson,,1,1,1,1
+access_lesson_line,lesson.line,model_lesson_line,,1,1,1,1
+access_course_location,course.location,model_course_location,,1,1,1,1
+access_course_lesson_report,course.lesson.report,model_course_lesson_report,,1,1,1,1

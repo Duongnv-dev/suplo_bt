@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="menu_course" model="website.menu">
+        <field name="name">Courses</field>
+        <field name="url">/courses</field>
+        <field name="parent_id" ref="website.main_menu"/>
+        <field name="sequence" type="int">11</field>
+    </record>
+
+    <template id="index" name="Courses">
+        <t t-call="website.layout">
+            <div id="wrap" class="o_website_hr_recruitment_jobs_list bg-100">
+                <div class="oe_structure">
+                    <section class="s_banner overflow-hidden bg-900"
+                             style="background-image: url(&quot;/website_slides/static/src/img/banner_default.svg&quot;); background-size: cover; background-position: 55% 65%"
+                             data-snippet="s_banner">
+                        <div class="container align-items-center d-flex mb-5 mt-lg-5 pt-lg-4 pb-lg-1">
+                            <div>
+                                <h1 class="display-3 mb-0">Reach new heights</h1>
+                                <h2 class="mb-4">Start your course today!</h2>
+                                <div class="row mt-1 mb-3">
+                                    <div class="col">
+                                        <p>Skill up and have an impact! Your business career starts here.<br/>Time to
+                                            start a course.
+                                        </p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </section>
+                </div>
+
+                <div class="container oe_website_jobs">
+                    <div class="row pt48 pb48">
+                        <div class="d-none" id="jobs_grid_left">
+                        </div>
+                        <div class="col-lg" id="jobs_grid">
+                            <div t-if="not courses">
+                                <div class="text-center text-muted">
+                                    <h3 class="css_editable_hidden">
+                                        <a t-attf-href="/contactus">Contact us</a>
+                                        for job opportunities.
+                                    </h3>
+                                    <h4 groups="hr_recruitment.group_hr_recruitment_manager">
+                                        Create new course pages from the
+                                        <strong>
+                                            <i>+New</i>
+                                        </strong>
+                                        top-right button.
+                                    </h4>
+                                </div>
+                            </div>
+                            <a t-foreach="courses" t-as="course" t-attf-href="/courses/detail/#{ slug(course) }"
+                               t-attf-class="text-decoration-none#{' mt-3' if job_index else ''}">
+                                <div class="card card-default mb32">
+                                    <div class="card-body">
+                                        <h3 class="text-secondary mt0 mb4">
+                                            <span t-field="course.name"/>
+                                        </h3>
+                                        <h5>
+                                            Địa Chỉ:
+                                            <span t-field="course.location_id"/>
+                                        </h5>
+                                        <h5>
+                                            Thời gian:
+                                            <span t-field="course.schedule"/>
+                                        </h5>
+                                        <p t-field="course.description"/>
+                                    </div>
+                                </div>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </t>
+    </template>
+    <template id="detail" name="Course Detail" track="1">
+        <t t-call="website.layout">
+            <t t-set="additional_title">Course Detail</t>
+            <div id="wrap" class="js_hr_recruitment">
+                <section class="bg-200">
+                    <div class="container">
+                        <nav aria-label="breadcrumb">
+                            <ol class="breadcrumb pl-0">
+                                <li class="breadcrumb-item">
+                                    <a href="/courses" class="text-secondary font-weight-bold">Courses</a>
+                                </li>
+                                <li class="breadcrumb-item active" aria-current="page">
+                                    <span t-field="course.name"/>
+                                </li>
+                            </ol>
+                        </nav>
+                    </div>
+                </section>
+                <div t-field="course.description"/>
+            </div>
+        </t>
+    </template>
+</odoo>

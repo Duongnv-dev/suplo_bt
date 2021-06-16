@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="open_course_lesson" model="ir.actions.act_window">
+        <field name="name">Lessons</field>
+        <field name="res_model">course.lesson</field>
+        <field name="view_mode">tree,form,graph,pivot</field>
+        <field name="help" type="html">
+            <p class="o_view_nocontent_smiling_face">
+                No data yet!
+            </p>
+        </field>
+    </record>
+    <menuitem id="menu_course_lesson" name="Lessons" parent="course_course_menu" sequence="2" action="open_course_lesson"/>
+</odoo>

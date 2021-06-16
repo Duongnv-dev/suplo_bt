@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <record model="ir.ui.view" id="course_lesson_report_graph_view">
+        <field name="name">course_lesson_report_graph_view</field>
+        <field name="model">course.lesson.report</field>
+        <field name="arch" type="xml">
+            <graph string="Report" stacked="False">
+                <field name="measure" type="measure"/>
+            </graph>
+        </field>
+    </record>
+
+    <record id="course_lesson_search_view" model="ir.ui.view">
+        <field name="name">course_lesson_search_view</field>
+        <field name="model">course.lesson.report</field>
+        <field name="priority">100</field>
+        <field name="arch" type="xml">
+            <search string="Report">
+                <field name="course_id"/>
+                <group expand="1" string="Group By">
+                    <filter string="Course" name="course_id" context="{'group_by':'course_id'}"/>
+                </group>
+            </search>
+        </field>
+    </record>
+
+    <record id="course_lesson_report" model="ir.actions.act_window">
+        <field name="name">Report</field>
+        <field name="res_model">course.lesson.report</field>
+        <field name="view_mode">graph,tree</field>
+        <field name="search_view_id" ref="course_lesson_search_view"/>
+        <field name="context">{'group_by': 'course_id'}</field>
+    </record>
+
+    <menuitem id="reporting_menu" name="Reporting" parent="menu_course_root" sequence="2"/>
+    <menuitem id="menu_course_lesson_report" name="Course" parent="reporting_menu" sequence="1"
+              action="course_lesson_report"/>
+</odoo>
